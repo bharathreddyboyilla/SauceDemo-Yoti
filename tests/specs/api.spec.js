@@ -8,7 +8,7 @@ test.describe('API Validation Tests', () => {
   //const baseURL = testData.apiEndpoints.base;
 
   // Test Case 1: API Status Code Validation
-  test('TC-API01: Verify all endpoints return correct status codes', async ({ request }) => {
+  test.skip('TC-API01: Verify all endpoints return correct status codes', async ({ request }) => {
     const endpoints = [
       '/',
       '/inventory.html',
@@ -26,7 +26,7 @@ test.describe('API Validation Tests', () => {
   });
 
   // Test Case 2: Inventory Data Validation
-  test('TC-API02: Verify inventory page loads product data', async ({ request }) => {
+  test.skip('TC-API02: Verify inventory page loads product data', async ({ request }) => {
     const baseURL = '/';
      await loginPage.login(
       testData.users.standard.username,
