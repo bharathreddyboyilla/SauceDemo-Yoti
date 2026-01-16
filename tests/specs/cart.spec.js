@@ -28,7 +28,6 @@ test.describe('Cart Tests', () => {
       testData.products.fleeceJacket
     ];
     
-    // Add products to the cart
     for (const product of products) {
       await inventoryPage.addProductToCart(product);
     }
@@ -53,7 +52,7 @@ test.describe('Cart Tests', () => {
     await inventoryPage.addProductToCart(productToKeep);
     await inventoryPage.goToCart();
     await cartPage.removeItem(productToRemove);
-    // Verifies only one item remains
+    //verifies rest of the items in cart
     const cartItems = await cartPage.getCartItemCount();
     expect(cartItems).toBe(1);
     
@@ -63,7 +62,6 @@ test.describe('Cart Tests', () => {
   });
 
   test('TC10: Continue shopping from cart', async ({ page }) => {
-    // Positive scenario
     await inventoryPage.addProductToCart(testData.products.backpack);
     await inventoryPage.goToCart();
     await cartPage.continueShopping();
