@@ -24,7 +24,7 @@ test.describe('Checkout Tests', () => {
     await inventoryPage.goToCart();
   });
 
-  test('TC12: Complete checkout with valid information', async ({ page }) => {
+  test('TC11: Complete checkout with valid information', async ({ page }) => {
     // Positive scenario
     await cartPage.proceedToCheckout();
     
@@ -46,7 +46,7 @@ test.describe('Checkout Tests', () => {
     await expect(page.locator('.complete-header')).toHaveText('Thank you for your order!');
   });
 
-  test('TC13: Checkout with empty information', async ({ page }) => {
+  test('TC12: Checkout with empty information', async ({ page }) => {
     // Negative scenario
     await cartPage.proceedToCheckout();
     
@@ -59,7 +59,7 @@ test.describe('Checkout Tests', () => {
     
   });
 
-  test('TC14: Cancel checkout process', async ({ page }) => {
+  test('TC13: Cancel checkout process', async ({ page }) => {
     // Positive scenario
     await cartPage.proceedToCheckout();
     

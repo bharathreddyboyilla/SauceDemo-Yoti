@@ -20,7 +20,7 @@ test.describe('Cart Tests', () => {
     );
   });
 
-  test('TC9: Add multiple products to cart and verify', async () => {
+  test('TC8: Add multiple products to cart and verify', async () => {
     // Positive scenario
     const products = [
       testData.products.backpack,
@@ -49,7 +49,7 @@ test.describe('Cart Tests', () => {
     }
   });
 
-  test('TC10: Remove item from cart page', async () => {
+  test('TC9: Remove item from cart page', async () => {
     // Positive scenario
     const productToRemove = testData.products.backpack;
     const productToKeep = testData.products.bikeLight;
@@ -73,7 +73,7 @@ test.describe('Cart Tests', () => {
     expect(itemNames).not.toContain(productToRemove);
   });
 
-  test('TC11: Continue shopping from cart', async ({ page }) => {
+  test('TC10: Continue shopping from cart', async ({ page }) => {
     // Positive scenario
     await inventoryPage.addProductToCart(testData.products.backpack);
     await inventoryPage.goToCart();

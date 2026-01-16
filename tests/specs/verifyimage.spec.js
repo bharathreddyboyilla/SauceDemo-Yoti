@@ -13,18 +13,18 @@ test.describe('Product Tests', () => {
     
     await loginPage.navigate();
     await loginPage.login(
-      testData.users.standard.username,
-      testData.users.standard.password
+      testData.users.problem.username,
+      testData.users.problem.password
     );
   });
 
-test('TC08: Verify product images load correctly', async ({ page }) => {
+test('TC14: Verify product images load correctly', async ({ page }) => {
   // Test data - product titles and what their images should show
   const expectedProducts = [
     { title: 'Sauce Labs Backpack', imageShouldContain: 'backpack' },
     { title: 'Sauce Labs Bike Light', imageShouldContain: 'bike-light' },
     { title: 'Sauce Labs Bolt T-Shirt', imageShouldContain: 'bolt' },
-    { title: 'Sauce Labs Fleece Jacket', imageShouldContain: 'Jacket' },
+    { title: 'Sauce Labs Fleece Jacket', imageShouldContain: 'pullover' },
     { title: 'Sauce Labs Onesie', imageShouldContain: 'onesie' },
     { title: 'Test.allTheThings() T-Shirt (Red)', imageShouldContain: 'red' }
   ];
@@ -52,7 +52,12 @@ test('TC08: Verify product images load correctly', async ({ page }) => {
     
     // Optional: Check if image filename contains expected keyword
     if (imageSrc) {
-      console.log(`  Image contains '${expected.imageShouldContain}'? ${imageSrc.includes(expected.imageShouldContain)}`);
+        const containsExpected = imageSrc.includes(expected.imageShouldContain);
+        console.log(`Image contains '${expected.imageShouldContain}'? ${containsExpected}`);
+        
+        //Test should passes if true, fails if false
+        expect(imageSrc).toContain(expected.imageShouldContain);
+      // expect(containsExpected).toBeTruthy();
     }
   }
 });
