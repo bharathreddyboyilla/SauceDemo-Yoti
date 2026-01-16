@@ -1,0 +1,19 @@
+{
+  "name": "yoti-sauce",
+  "version": "1.0.0",
+  "description": "Playwright automation for SauceDemo e-commerce application",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:chrome": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report",
+    "playwright:install": "npx playwright install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0"
+  }
+}
