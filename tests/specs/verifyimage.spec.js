@@ -19,7 +19,7 @@ test.describe('Product Tests', () => {
   });
 
 test('TC14: Verify product images load correctly', async ({ page }) => {
-  // Test data - product titles and what their images should show
+  // Test data - product titles and what their images shows
   const expectedProducts = [
     { title: 'Sauce Labs Backpack', imageShouldContain: 'backpack' },
     { title: 'Sauce Labs Bike Light', imageShouldContain: 'bike-light' },
@@ -29,12 +29,10 @@ test('TC14: Verify product images load correctly', async ({ page }) => {
     { title: 'Test.allTheThings() T-Shirt (Red)', imageShouldContain: 'red' }
   ];
 
-  // Check each expected product
   for (const expected of expectedProducts) {
-    // Find the product by title
     const productItem = page.locator('.inventory_item', { hasText: expected.title });
     
-    // Get the image
+    // Getting the image
     const image = productItem.locator('img');
     const altText = await image.getAttribute('alt');
     const imageSrc = await image.getAttribute('src');
@@ -43,21 +41,17 @@ test('TC14: Verify product images load correctly', async ({ page }) => {
     console.log(`  Alt: ${altText}`);
     console.log(`  Image URL: ${imageSrc}`);
     
-    // Verify alt text matches title
     expect(altText).toBe(expected.title);
-    
-    // Verify image loads
     const naturalWidth = await image.evaluate(el => el.naturalWidth);
     //expect(naturalWidth).toBeGreaterThan(0);
     
-    // Optional: Check if image filename contains expected keyword
+    //image filename contains expected keyword
     if (imageSrc) {
         const containsExpected = imageSrc.includes(expected.imageShouldContain);
         console.log(`Image contains '${expected.imageShouldContain}'? ${containsExpected}`);
         
         //Test should passes if true, fails if false
         expect(imageSrc).toContain(expected.imageShouldContain);
-      // expect(containsExpected).toBeTruthy();
     }
   }
 });

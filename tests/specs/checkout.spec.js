@@ -19,7 +19,6 @@ test.describe('Checkout Tests', () => {
       testData.users.standard.password
     );
     
-    // Add a product and go to cart for checkout tests
     await inventoryPage.addProductToCart(testData.products.backpack);
     await inventoryPage.goToCart();
   });
@@ -27,46 +26,28 @@ test.describe('Checkout Tests', () => {
   test('TC11: Complete checkout with valid information', async ({ page }) => {
     // Positive scenario
     await cartPage.proceedToCheckout();
-    
-    // Fill checkout information
     await page.locator('[data-test="firstName"]').fill(testData.checkoutInfo.valid.firstName);
     await page.locator('[data-test="lastName"]').fill(testData.checkoutInfo.valid.lastName);
     await page.locator('[data-test="postalCode"]').fill(testData.checkoutInfo.valid.postalCode);
     await page.locator('[data-test="continue"]').click();
-    
-    // Verify overview page
     await expect(page.locator('.title')).toHaveText('Checkout: Overview');
     await expect(page.locator('.cart_item')).toBeVisible();
-    
-    // Complete purchase
     await page.locator('[data-test="finish"]').click();
-    
-    // Verify completion
     await expect(page.locator('.title')).toHaveText('Checkout: Complete!');
     await expect(page.locator('.complete-header')).toHaveText('Thank you for your order!');
   });
 
   test('TC12: Checkout with empty information', async ({ page }) => {
-    // Negative scenario
     await cartPage.proceedToCheckout();
-    
-    // Try to continue without filling information
     await page.locator('[data-test="continue"]').click();
-
-    // Verify error message
     const errorMessage = page.locator('.error-message-container.error');
     await expect(errorMessage).toBeVisible('Error: First Name is required');
     
   });
 
   test('TC13: Cancel checkout process', async ({ page }) => {
-    // Positive scenario
     await cartPage.proceedToCheckout();
-    
-    // Cancel from information page
     await page.locator('[data-test="cancel"]').click();
-    
-    // Should return to cart page
     await expect(page).toHaveURL(/cart.html/);
     await expect(page.locator('.title')).toHaveText('Your Cart');
   });

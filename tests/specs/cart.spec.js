@@ -32,17 +32,12 @@ test.describe('Cart Tests', () => {
     for (const product of products) {
       await inventoryPage.addProductToCart(product);
     }
-    
-    // Verify cart badge shows correct count
+   
     await expect(inventoryPage.cartBadge).toHaveText('3');
-    
-    // Go to cart
     await inventoryPage.goToCart();
-    
     // Verify all products are in cart
     const cartItems = await cartPage.getCartItemCount();
     expect(cartItems).toBe(3);
-    
     const itemNames = await cartPage.getItemNames();
     for (const product of products) {
       expect(itemNames).toContain(product);
@@ -53,18 +48,12 @@ test.describe('Cart Tests', () => {
     // Positive scenario
     const productToRemove = testData.products.backpack;
     const productToKeep = testData.products.bikeLight;
-    
-    // Add two products
+
     await inventoryPage.addProductToCart(productToRemove);
     await inventoryPage.addProductToCart(productToKeep);
-    
-    // Go to cart
     await inventoryPage.goToCart();
-    
-    // Remove one product
     await cartPage.removeItem(productToRemove);
-    
-    // Verify only one item remains
+    // Verifies only one item remains
     const cartItems = await cartPage.getCartItemCount();
     expect(cartItems).toBe(1);
     
@@ -77,10 +66,7 @@ test.describe('Cart Tests', () => {
     // Positive scenario
     await inventoryPage.addProductToCart(testData.products.backpack);
     await inventoryPage.goToCart();
-    
-    // Go back to products
     await cartPage.continueShopping();
-    
     await expect(page).toHaveURL(/inventory.html/);
     await expect(page.locator('.title')).toHaveText('Products');
   });

@@ -42,7 +42,6 @@ test.describe('Product Tests', () => {
     // Cart badge should not be visible
     await expect(inventoryPage.cartBadge).not.toBeVisible();
     
-    // Button should change back to "Add to cart"
     const productItem = page.locator('.inventory_item', { hasText: productName });
     await expect(productItem.locator('button')).toHaveText('Add to cart');
   });
@@ -50,11 +49,8 @@ test.describe('Product Tests', () => {
   test('TC07: Sort products by price (low to high)', async () => {
     // Positive scenario
     const pricesBeforeSort = await inventoryPage.getProductPrices();
-    
     await inventoryPage.sortProducts('lohi');
-    
     const pricesAfterSort = await inventoryPage.getProductPrices();
-    
     // Convert prices to numbers and verify sorting
     const numericPricesBefore = pricesBeforeSort.map(p => parseFloat(p.replace('$', '')));
     const numericPricesAfter = pricesAfterSort.map(p => parseFloat(p.replace('$', '')));
