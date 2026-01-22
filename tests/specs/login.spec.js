@@ -1,4 +1,3 @@
-// tests/specs/login.spec.js
 const { test, expect } = require('@playwright/test');
 const LoginPage = require('../pages/LoginPage');
 const testData = require('../fixtures/test-data.json');

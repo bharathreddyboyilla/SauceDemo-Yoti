@@ -13,8 +13,8 @@ test.describe('Product Tests', () => {
     
     await loginPage.navigate();
     await loginPage.login(
-      testData.users.problem.username,
-      testData.users.problem.password
+      testData.users.standard.username,
+      testData.users.standard.password
     );
   });
 

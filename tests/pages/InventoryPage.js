@@ -1,4 +1,3 @@
-// tests/pages/InventoryPage.js
 class InventoryPage {
   constructor(page) {
     this.page = page;

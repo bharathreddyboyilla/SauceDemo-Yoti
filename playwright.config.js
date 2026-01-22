@@ -6,7 +6,11 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 1,
-  workers: 4,
+  workers: 2,
+  timeout: 30000,
+  expect: {
+    timeout: 5000
+  },
   reporter: [
     ['html', { outputFolder: 'playwright-report' }],
     ['list']
